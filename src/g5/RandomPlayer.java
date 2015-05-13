@@ -20,6 +20,7 @@ public class RandomPlayer implements BattleshipsPlayer
     private final static Random rnd = new Random();
     private int sizeX;
     private int sizeY;
+    private boolean vertical;
 
     public RandomPlayer()
     {
@@ -51,6 +52,22 @@ public class RandomPlayer implements BattleshipsPlayer
         }
     }
 
+  
+
+  private boolean willCollide(int size)
+  {
+    boolean willCollide = false;
+    if (this.vertical) {
+    // make check if vertical cell is taken by ship and return true
+    willCollide = true;
+    } else {
+    // make check if horisontal cell is taken by ship and return true
+    willCollide = true;
+    }
+    return willCollide;
+  }
+
+    
     @Override
     public void incoming(Position pos)
     {
