@@ -22,7 +22,7 @@ public class G5 implements PlayerFactory<BattleshipsPlayer>
     @Override
     public BattleshipsPlayer getNewInstance()
     {
-        return new RandomPlayer();
+        return new G5AI();
     }
 
     @Override
