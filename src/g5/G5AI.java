@@ -39,6 +39,8 @@ public class G5AI implements BattleshipsPlayer
     public Position getFireCoordinates(Fleet enemyShips)
     {
         //Do nothing
+        return null;
+
     }
 
     @Override
