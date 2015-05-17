@@ -9,7 +9,6 @@ import battleship.interfaces.Fleet;
 import battleship.interfaces.Position;
 import battleship.interfaces.Board;
 import battleship.interfaces.Ship;
-import java.util.Random;
 
 /**
  *
@@ -17,11 +16,9 @@ import java.util.Random;
  */
 public class G5AI implements BattleshipsPlayer
 {
-    private final static Random rnd = new Random();
-    private int sizeX;
-    private int sizeY;
-    private boolean vertical;
 
+    private int currentRound;
+    
     public G5AI()
     {
     }
@@ -29,58 +26,19 @@ public class G5AI implements BattleshipsPlayer
     @Override
     public void placeShips(Fleet fleet, Board board)
     {
-        sizeX = board.sizeX();
-        sizeY = board.sizeY();
-        for(int i = 0; i < fleet.getNumberOfShips(); ++i)
-        {
-            Ship s = fleet.getShip(i);
-            boolean vertical = rnd.nextBoolean();
-            Position pos;
-            if(vertical)
-            {
-                int x = rnd.nextInt(sizeX);
-                int y = rnd.nextInt(sizeY-(s.size()-1));
-                pos = new Position(x, y);
-            }
-            else
-            {
-                int x = rnd.nextInt(sizeX-(s.size()-1));
-                int y = rnd.nextInt(sizeY);
-                pos = new Position(x, y);
-            }
-            board.placeShip(pos, s, vertical);
-        }
+        //Do nothing
     }
 
-  
-
-  private boolean willCollide(int size)
-  {
-    boolean willCollide = false;
-    if (this.vertical) {
-    // make check if vertical cell is taken by ship and return true
-    willCollide = true;
-    } else {
-    // make check if horisontal cell is taken by ship and return true
-    willCollide = true;
-    }
-    return willCollide;
-  }
-
-    
     @Override
     public void incoming(Position pos)
     {
-        
         //Do nothing
     }
 
     @Override
     public Position getFireCoordinates(Fleet enemyShips)
     {
-        int x = rnd.nextInt(sizeX);
-        int y = rnd.nextInt(sizeY);
-        return new Position(x,y);
+        //Do nothing
     }
 
     @Override
