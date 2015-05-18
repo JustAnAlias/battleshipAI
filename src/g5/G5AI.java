@@ -9,6 +9,7 @@ import battleship.interfaces.Fleet;
 import battleship.interfaces.Position;
 import battleship.interfaces.Board;
 import battleship.interfaces.Ship;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,15 +18,30 @@ import battleship.interfaces.Ship;
 public class G5AI implements BattleshipsPlayer
 {
 
+    // Defining other classes to be used/called in methods
+    private Shooter shoot;
+    private PlaceFleet fleet;
+    private Radar radar;
+
     private int currentRound;
     
     public G5AI()
     {
+        this.fleet = new PlaceFleet();
     }
 
     @Override
     public void placeShips(Fleet fleet, Board board)
     {
+        //Call check if cell is taken
+        
+        // Get each ship
+        for (int i = 0; i < fleet.getNumberOfShips(); i++)
+        {
+            Ship s = fleet.getShip(i);
+            //PlaceShips
+            
+        }
         //Do nothing
     }
 
@@ -38,8 +54,11 @@ public class G5AI implements BattleshipsPlayer
     @Override
     public Position getFireCoordinates(Fleet enemyShips)
     {
-        //Do nothing
-        return null;
+        // Get best coordinates from radar
+        int[] coordinates = this.radar.locateBestFireCoordinates();
+
+        //return new Position(x,y);
+        return new Position(coordinates[0], coordinates[1]);
 
     }
 
@@ -47,6 +66,14 @@ public class G5AI implements BattleshipsPlayer
     public void hitFeedBack(boolean hit, Fleet enemyShips)
     {
         //Do nothing
+        ArrayList<Integer> enemyShipSizes = new ArrayList();
+        for (int i = 0; i < enemyShips.getNumberOfShips(); i++)
+        {
+            Ship es = enemyShips.getShip(i);
+            enemyShipSizes.add(Integer.valueOf(es.size()));
+        }
+        // Update MapInfo
+        this.radar.adjustMapInfo(hit, enemyShipSizes);
     }    
 
     @Override
@@ -59,6 +86,8 @@ public class G5AI implements BattleshipsPlayer
     public void startRound(int round)
     {
         //Do nothing
+        this.shoot = new Shooter(round);
+        this.currentRound = round;
     }
 
     @Override
