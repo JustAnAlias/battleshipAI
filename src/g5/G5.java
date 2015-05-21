@@ -36,7 +36,7 @@ public class G5 implements PlayerFactory<BattleshipsPlayer>
     {
         return "Team G5 - "
                 + "Daniel Krarup, " +
-                "RL, &" +
+                "RL, & " +
                 "Mads Køie";
     }
     
